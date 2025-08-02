@@ -1,51 +1,51 @@
-/* 1. Viewport control */
+/* Reset and base */
 * {
   box-sizing: border-box;
-}
-html, body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
 }
 
-/* 2. Responsive container */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
 .container {
-  max-width: 100%;
+  max-width: 900px;
+  margin: auto;
   padding: 10px;
 }
 
-/* 3. Responsive text and cards */
-.card {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-size: 1rem;
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-/* 4. Responsive flex/grid layout */
-.row {
+/* Grid layout for cards */
+.grid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.col {
-  flex: 1 1 100%; /* Full width on mobile */
+/* Card style */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* 5. Make fonts scale on small screens */
+/* Mobile responsive: 2 columns for larger screens */
 @media screen and (min-width: 600px) {
-  .col {
-    flex: 1 1 48%;
+  .grid {
+    flex-direction: row;
+    justify-content: space-between;
   }
-}
 
-@media screen and (min-width: 900px) {
-  .col {
-    flex: 1 1 30%;
+  .card {
+    flex: 1;
   }
 }
