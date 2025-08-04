@@ -1,48 +1,44 @@
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  background-color: #0b0f1a;
-  color: #99f6e4;
+  background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+  color: #00ffe7;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+.title {
   text-align: center;
+  padding: 1rem;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00ffe7;
 }
 
-h1 {
-  color: #22c55e;
-  margin-bottom: 30px;
+.dashboard-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.grid {
+.tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
+  gap: 1rem;
+  width: 100%;
+  max-width: 960px;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #22c55e;
+.tile {
+  background: rgba(0, 255, 231, 0.1);
+  border: 1px solid #00ffe7;
   border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 0 12px #22c55e33;
-  transition: transform 0.2s ease;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffe7;
+  transition: 0.3s ease;
 }
 
-.card:hover {
-  transform: scale(1.03);
-}
-
-.card h3 {
-  margin: 0 0 8px;
-  color: #ffffff;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #99f6e4;
+.tile:hover {
+  background-color: rgba(0, 255, 231, 0.2);
+  transform: scale(1.05);
 }

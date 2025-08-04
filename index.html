@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TREADETOOLS Option Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jarvis Option Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>TREADETOOLS JARVIS DASHBOARD</h1>
-    <div class="grid" id="dataGrid">
-      <!-- Tiles will be injected here -->
+  <div class="dashboard-container">
+    <h1 class="title">TREADETOOLS | JARVIS HUD Dashboard</h1>
+    <div class="tiles">
+      <div class="tile" id="spotPrice">Spot Price: ₹--</div>
+      <div class="tile" id="atmStrike">ATM Strike: ₹--</div>
+      <div class="tile" id="ceLtp">CE LTP: ₹--</div>
+      <div class="tile" id="peLtp">PE LTP: ₹--</div>
+      <div class="tile" id="ceDelta">CE Δ: --</div>
+      <div class="tile" id="peDelta">PE Δ: --</div>
+      <div class="tile" id="ltpDiff">LTP Diff: ₹--</div>
     </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
