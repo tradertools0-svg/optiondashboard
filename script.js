@@ -1,8 +1,23 @@
-// Dummy values for testing (replace with live data fetch logic)
-document.getElementById("spotPrice").textContent = "Spot Price: ₹5537.50";
-document.getElementById("atmStrike").textContent = "ATM Strike: ₹5550";
-document.getElementById("ceLtp").textContent = "CE LTP: ₹162.35";
-document.getElementById("peLtp").textContent = "PE LTP: ₹140.85";
-document.getElementById("ceDelta").textContent = "CE Δ: +0.44";
-document.getElementById("peDelta").textContent = "PE Δ: -0.47";
-document.getElementById("ltpDiff").textContent = "LTP Diff: ₹21.50";
+// Dummy static data — iske jagah baad me API se data fetch karoge
+const optionData = {
+  spotPrice: "₹19,745.25",
+  atmStrike: "19750",
+  ceLtp: "122.10",
+  peLtp: "108.45",
+  ceDelta: "+0.46",
+  peDelta: "-0.45",
+  ltpDiff: "₹13.65"
+};
+
+function updateTiles(data) {
+  document.getElementById("spotPrice").textContent = data.spotPrice;
+  document.getElementById("atmStrike").textContent = data.atmStrike;
+  document.getElementById("ceLtp").textContent = data.ceLtp;
+  document.getElementById("peLtp").textContent = data.peLtp;
+  document.getElementById("ceDelta").textContent = data.ceDelta;
+  document.getElementById("peDelta").textContent = data.peDelta;
+  document.getElementById("ltpDiff").textContent = data.ltpDiff;
+}
+
+// Call once on page load
+updateTiles(optionData);
