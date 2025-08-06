@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2025-08-01",
+    "symbol": "RELIANCE",
+    "option_type": "CALL",
+    "strike": 2500,
+    "iv": 24.5,
+    "bid": 8.2,
+    "ask": 8.5,
+    "volume": 1230
+  },
+  {
+    "date": "2025-08-01",
+    "symbol": "TCS",
+    "option_type": "PUT",
+    "strike": 3300,
+    "iv": 31.2,
+    "bid": 12.5,
+    "ask": 13.0,
+    "volume": 980
+  }
+]

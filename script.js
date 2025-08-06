@@ -1,23 +1,37 @@
-// Dummy static data — iske jagah baad me API se data fetch karoge
-const optionData = {
-  spotPrice: "₹19,745.25",
-  atmStrike: "19750",
-  ceLtp: "122.10",
-  peLtp: "108.45",
-  ceDelta: "+0.46",
-  peDelta: "-0.45",
-  ltpDiff: "₹13.65"
-};
+// Load data from mock_data.json and display in table
+fetch("mock_data.json")
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("data-output");
+    container.innerHTML = ""; // Clear "Loading..."
 
-function updateTiles(data) {
-  document.getElementById("spotPrice").textContent = data.spotPrice;
-  document.getElementById("atmStrike").textContent = data.atmStrike;
-  document.getElementById("ceLtp").textContent = data.ceLtp;
-  document.getElementById("peLtp").textContent = data.peLtp;
-  document.getElementById("ceDelta").textContent = data.ceDelta;
-  document.getElementById("peDelta").textContent = data.peDelta;
-  document.getElementById("ltpDiff").textContent = data.ltpDiff;
-}
+    const table = document.createElement("table");
+    table.border = "1";
+    table.style.borderCollapse = "collapse";
 
-// Call once on page load
-updateTiles(optionData);
+    // Create header
+    const headerRow = table.insertRow();
+    Object.keys(data[0]).forEach(key => {
+      const th = document.createElement("th");
+      th.textContent = key;
+      th.style.padding = "6px";
+      th.style.backgroundColor = "#f2f2f2";
+      headerRow.appendChild(th);
+    });
+
+    // Fill table rows
+    data.forEach(row => {
+      const tr = table.insertRow();
+      Object.values(row).forEach(val => {
+        const td = tr.insertCell();
+        td.textContent = val;
+        td.style.padding = "6px";
+      });
+    });
+
+    container.appendChild(table);
+  })
+  .catch(error => {
+    document.getElementById("data-output").innerText = "Error loading data!";
+    console.error(error);
+  });
