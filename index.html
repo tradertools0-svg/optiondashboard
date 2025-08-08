@@ -1,19 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Option Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <h2>Option Dashboard</h2>
-    <div id="data-output">
-      Loading data...
-    </div>
+<!-- Countdown card -->
+<div id="countdown-card" class="ct-card" data-target="25-08-2025 09:00">
+  <div class="ct-title">Get Ready</div>
+  <div class="ct-sub">Krunal Chawada — Delta / Algo / Swing Trading</div>
+  <div class="ct-time">
+    <div class="ct-seg"><span class="num" id="days">00</span><span class="label">Days</span></div>
+    <div class="ct-seg"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
+    <div class="ct-seg"><span class="num" id="minutes">00</span><span class="label">Minutes</span></div>
+    <div class="ct-seg"><span class="num" id="seconds">00</span><span class="label">Seconds</span></div>
   </div>
+</div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<style>
+  :root {
+    --primary: #14b7ac;
+    --accent: #7fe3d8;
+    --bg: #f7fbfa;
+    --card: #ffffff;
+    --muted: #2e6b69;
+    --glass: rgba(20,183,172,0.08);
+    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .ct-card {
+    text-align: center;
+    padding: 40px 50px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, var(--card), #f4fbfa);
+    box-shadow: 0 8px 24px var(--glass);
+    border: 1px solid rgba(20, 183, 172, 0.12);
+  }
+
+  .ct-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .ct-sub {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+
+  .ct-time {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .ct-seg {
+    background: linear-gradient(180deg, rgba(20, 183, 172, 0.06), rgba(127, 227, 216, 0.03));
+    padding: 16px 18px;
+    border-radius: 14px;
+    min-width: 100px;
+    text-align: center;
+    border: 1px solid rgba(20, 183, 172, 0.06);
+    backdrop-filter: blur(4px);
+  }
+
+  .ct-seg .num {
+    display: block;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--muted);
+  }
+
+  .ct-seg .label {
+    display: block;
+    font-size: 14px;
+    color: rgba(46, 107, 105, 0.8);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
+<script>
+(function(){
+  function parseTarget(s){
+    var parts = s.split(' ');
+    var dpart = parts[0].split('-');
+    var day = parseInt(dpart[0],10);
+    var month = parseInt(dpart[1],10) - 1;
+    var year = parseInt(dpart[2],10);
+    var hour = 0, minute = 0;
+    if(parts[1]){
+      var t = parts[1].split(':');
+      hour = parseInt(t[0],10) || 0;
+      minute = parseInt(t[1],10) || 0;
+    }
+    return new Date(year, month, day, hour, minute, 0);
+  }
+
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+
+  var card = document.getElementById('countdown-card');
+  if(!card) return;
+  var targetDate = parseTarget(card.getAttribute('data-target') || '25-08-2025 09:00');
+
+  var elDays = document.getElementById('days');
+  var elHours = document.getElementById('hours');
+  var elMinutes = document.getElementById('minutes');
+  var elSeconds = document.getElementById('seconds');
+
+  function update(){
+    var now = new Date();
+    var diff = targetDate - now;
+    if(diff <= 0){
+      elDays.textContent = '00';
+      elHours.textContent = '00';
+      elMinutes.textContent = '00';
+      elSeconds.textContent = '00';
+      card.querySelector('.ct-title').textContent = 'Ready!';
+      clearInterval(timerInterval);
+      return;
+    }
+    var sec = Math.floor(diff/1000);
+    var days = Math.floor(sec / 86400);
+    sec -= days * 86400;
+    var hours = Math.floor(sec / 3600);
+    sec -= hours * 3600;
+    var minutes = Math.floor(sec / 60);
+    var seconds = sec - minutes * 60;
+
+    elDays.textContent = pad(days);
+    elHours.textContent = pad(hours);
+    elMinutes.textContent = pad(minutes);
+    elSeconds.textContent = pad(seconds);
+  }
+
+  update();
+  var timerInterval = setInterval(update, 1000);
+})();
+</script>
