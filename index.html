@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Option Dashboard</h1>
+    <p>Below is the latest option data:</p>
+    <pre id="output">Loading...</pre>
+
+    <script>
+        // GitHub raw JSON file URL
+        const jsonUrl = 'https://raw.githubusercontent.com/tradertools0-svg/optiondashboard/main/option_data.json';
+
+        fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(err => {
+                document.getElementById('output').textContent = 'Error loading JSON: ' + err;
+            });
+    </script>
+</body>
+</html>
